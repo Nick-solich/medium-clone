@@ -2,7 +2,7 @@ version: "3.9"
 services:
   api:
     image: kalambagames/job-assignment-backend
-    command: [ "/app/wait-for", "db:3306", "--", "npm", "run", "start" ]
+    command: ["/app/wait-for", "db:3306", "--", "npm", "run", "start"]
     restart: always
     environment:
       DATABASE_URL: mysql://root:password@db:3306/assignment
@@ -20,4 +20,4 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: assignment
     ports:
-      - 3306:3306
+      - 3307:3306
