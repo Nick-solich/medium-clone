@@ -1,4 +1,4 @@
-export default function Editor() {
+export default function Settings(): JSX.Element {
   return (
     <>
       <nav className="navbar navbar-light">
@@ -39,30 +39,36 @@ export default function Editor() {
         </div>
       </nav>
 
-      <div className="editor-page">
+      <div className="settings-page">
         <div className="container page">
           <div className="row">
-            <div className="col-md-10 offset-md-1 col-xs-12">
+            <div className="col-md-6 offset-md-3 col-xs-12">
+              <h1 className="text-xs-center">Your Settings</h1>
+
               <form>
                 <fieldset>
                   <fieldset className="form-group">
-                    <input type="text" className="form-control form-control-lg" placeholder="Article Title" />
+                    <input className="form-control" type="text" placeholder="URL of profile picture" />
                   </fieldset>
                   <fieldset className="form-group">
-                    <input type="text" className="form-control" placeholder="What's this article about?" />
+                    <input className="form-control form-control-lg" type="text" placeholder="Your Name" />
                   </fieldset>
                   <fieldset className="form-group">
-                    <textarea className="form-control" rows={8} placeholder="Write your article (in markdown)" />
+                    <textarea className="form-control form-control-lg" rows={8} placeholder="Short bio about you" />
                   </fieldset>
                   <fieldset className="form-group">
-                    <input type="text" className="form-control" placeholder="Enter tags" />
-                    <div className="tag-list" />
+                    <input className="form-control form-control-lg" type="text" placeholder="Email" />
                   </fieldset>
-                  <button className="btn btn-lg pull-xs-right btn-primary" type="button">
-                    Publish Article
-                  </button>
+                  <fieldset className="form-group">
+                    <input className="form-control form-control-lg" type="password" placeholder="Password" />
+                  </fieldset>
+                  <button className="btn btn-lg btn-primary pull-xs-right">Update Settings</button>
                 </fieldset>
               </form>
+              <hr />
+              <a className="btn btn-outline-danger" href="/#/logout">
+                Or click here to logout.
+              </a>
             </div>
           </div>
         </div>

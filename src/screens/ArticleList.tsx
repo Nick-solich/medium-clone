@@ -1,4 +1,4 @@
-export default function Profile() {
+export default function ArticleList(): JSX.Element {
   return (
     <>
       <nav className="navbar navbar-light">
@@ -39,39 +39,27 @@ export default function Profile() {
         </div>
       </nav>
 
-      <div className="profile-page">
-        <div className="user-info">
+      <div className="home-page">
+        <div className="banner">
           <div className="container">
-            <div className="row">
-              <div className="col-xs-12 col-md-10 offset-md-1">
-                <img src="http://i.imgur.com/Qr71crq.jpg" className="user-img" />
-                <h4>Eric Simons</h4>
-                <p>
-                  Cofounder @GoThinkster, lived in Aol&lsquo;s HQ for a few months, kinda looks like Peeta from the
-                  Hunger Games
-                </p>
-                <button className="btn btn-sm btn-outline-secondary action-btn">
-                  <i className="ion-plus-round" />
-                  &nbsp; Follow Eric Simons
-                </button>
-              </div>
-            </div>
+            <h1 className="logo-font">conduit</h1>
+            <p>A place to share your knowledge.</p>
           </div>
         </div>
 
-        <div className="container">
+        <div className="container page">
           <div className="row">
-            <div className="col-xs-12 col-md-10 offset-md-1">
-              <div className="articles-toggle">
+            <div className="col-md-9">
+              <div className="feed-toggle">
                 <ul className="nav nav-pills outline-active">
                   <li className="nav-item">
-                    <a className="nav-link active" href="">
-                      My Articles
+                    <a className="nav-link disabled" href="">
+                      Your Feed
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="">
-                      Favorited Articles
+                    <a className="nav-link active" href="">
+                      Global Feed
                     </a>
                   </li>
                 </ul>
@@ -118,11 +106,40 @@ export default function Profile() {
                   <h1>The song you won&lsquo;t ever stop singing. No matter how hard you try.</h1>
                   <p>This is the description for the post.</p>
                   <span>Read more...</span>
-                  <ul className="tag-list">
-                    <li className="tag-default tag-pill tag-outline">Music</li>
-                    <li className="tag-default tag-pill tag-outline">Song</li>
-                  </ul>
                 </a>
+              </div>
+            </div>
+
+            <div className="col-md-3">
+              <div className="sidebar">
+                <p>Popular Tags</p>
+
+                <div className="tag-list">
+                  <a href="" className="tag-pill tag-default">
+                    programming
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    javascript
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    emberjs
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    angularjs
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    react
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    mean
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    node
+                  </a>
+                  <a href="" className="tag-pill tag-default">
+                    rails
+                  </a>
+                </div>
               </div>
             </div>
           </div>
