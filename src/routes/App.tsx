@@ -1,17 +1,13 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
-
-import Article from "../screens/Article";
-import ArticleList from "../screens/ArticleList";
-import Editor from "../screens/Editor";
-import LoginRegister from "../screens/LoginRegister";
-import Logout from "../screens/Logout";
-import Profile from "../screens/Profile";
-import Settings from "../screens/Settings";
+import { Article, ArticleList, Editor, LoginRegister, Logout, Profile, Settings } from "screens";
+import Navbar from "../components/Navbar";
+import Footer from "components/Footer";
 
 function App(): JSX.Element {
   return (
     <>
+      <Navbar />
       <Router>
         <Switch>
           <Route path="/editor" exact component={Editor} />
@@ -26,6 +22,7 @@ function App(): JSX.Element {
           <Route path="/" component={ArticleList} />
         </Switch>
       </Router>
+      <Footer />
     </>
   );
 }
