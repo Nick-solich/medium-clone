@@ -1,4 +1,4 @@
-export default function LoginRegister(): JSX.Element {
+export default function Register(): JSX.Element {
   return (
     <>
       <div className="auth-page">
