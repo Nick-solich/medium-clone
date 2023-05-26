@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { loginRequest, LoginRequestInterface } from "utils/api/authentication";
 import { DefaultResponseInterface } from "utils/api/default";
+// import { useCookies } from 'react-cookie'
+// import jwt_decode from 'jwt-decode'
 
 export default function Login(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -30,9 +32,6 @@ export default function Login(): JSX.Element {
                   <li>{error}</li>
                 </ul>
               )}
-              <ul className="danger-messages">
-                <li>test</li>
-              </ul>
               <form onSubmit={handleSubmit}>
                 <fieldset className="form-group">
                   <input
