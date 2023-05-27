@@ -27,7 +27,7 @@ export default function Login(): JSX.Element {
         secure: true,
         sameSite: "none",
       });
-      navigate("/");
+      navigate("/#");
     }
     setError(response.message);
   };
