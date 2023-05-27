@@ -10,6 +10,16 @@
 
 # production
 /build
+dist
+/dist/*
+dist-ssr
+*.local
+
+# Environment variables
+.env
+.env.example
+.env.local
+.env.staging
 
 # misc
 .DS_Store
@@ -23,3 +33,13 @@ yarn-debug.log*
 yarn-error.log*
 .eslintcache
 
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
