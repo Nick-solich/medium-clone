@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ArticleInterface } from "utils/api/articles";
 import { formatDatePreview } from "utils/function/format";
 
