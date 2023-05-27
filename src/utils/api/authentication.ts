@@ -1,4 +1,4 @@
-import { ErrorResponseInterface, DefaultResponseInterface } from "./default";
+import { DefaultResponseInterface } from "./default";
 
 export interface LoginRequestInterface {
   user: {

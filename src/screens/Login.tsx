@@ -1,23 +1,30 @@
 import { useState } from "react";
-import { loginRequest, LoginRequestInterface } from "utils/api/authentication";
+import { loginRequest, LoginRespondInterface } from "utils/api/authentication";
 import { DefaultResponseInterface } from "utils/api/default";
-// import { useCookies } from 'react-cookie'
-// import jwt_decode from 'jwt-decode'
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export default function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("Test");
+  const [error, setError] = useState("");
+  const [cookies, setCookie] = useCookies(["user"]);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const user: LoginRequestInterface = {
+    const response: DefaultResponseInterface = await loginRequest({
       user: {
         email: email,
         password: password,
       },
-    };
-    const response: DefaultResponseInterface = await loginRequest(user);
+    });
+    console.log(cookies);
+    if (response.ok) {
+      const data: LoginRespondInterface = JSON.parse(response.message);
+      setCookie("user", data, { path: "/" });
+      navigate("/");
+    }
     setError(response.message);
   };
   return (
