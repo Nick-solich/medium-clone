@@ -2,13 +2,14 @@ import { useState } from "react";
 import { loginRequest, UserInterface } from "utils/api/authentication";
 import { DefaultResponseInterface } from "utils/api/default";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 
 export default function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [cookies, setCookie] = useCookies(["user"]);
+
+  const cookies = new Cookies();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,13 +22,14 @@ export default function Login(): JSX.Element {
     });
     if (response.ok) {
       const data: UserInterface = JSON.parse(response.message);
-      setCookie("user", data, {
+      cookies.set("user", data, {
         path: "/",
         maxAge: 60 * 60 * 24,
         secure: true,
         sameSite: "none",
       });
       navigate("/#");
+      navigate(0);
     }
     setError(response.message);
   };

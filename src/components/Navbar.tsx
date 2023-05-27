@@ -3,7 +3,7 @@ import { UserInterface } from "utils/api/authentication";
 import { useCookies } from "react-cookie";
 
 export default function Navbar(): JSX.Element {
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies] = useCookies(["user"]);
   const [user, setUser] = useState<UserInterface>();
 
   useEffect(() => {
