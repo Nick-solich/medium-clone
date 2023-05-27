@@ -1,24 +1,37 @@
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 import ArticlePreview from "components/ArticlePreview";
 import { ProfileInterface, profileRequest } from "utils/api/profile";
 import { DefaultResponseInterface } from "utils/api/default";
 import { useLocation } from "react-router-dom";
 import { ArticlesInterface, articlesByAuthorRequest } from "utils/api/articles";
+import { Cookies } from "react-cookie";
+import { UserInterface } from "utils/api/authentication";
 
 export default function Profile(): JSX.Element {
   const [profile, setProfile] = useState<ProfileInterface>();
   const [articles, setArticles] = useState<ArticlesInterface>();
   const location = useLocation();
+  const cookies = new Cookies();
 
   useEffect(() => {
-    fetchProfile();
+    const user: UserInterface = cookies.get("user");
+    if (user) {
+      fetchProfile(user.user.token);
+    } else {
+      fetchProfile();
+    }
     fetchArticles();
   }, [location]);
 
-  const fetchProfile = async () => {
+  const fetchProfile = async (token?: string) => {
     const locationProfile = window.location.hash.split("/").pop();
     if (!locationProfile) return;
-    const response: DefaultResponseInterface = await profileRequest(locationProfile);
+    let response: DefaultResponseInterface;
+    if (token) {
+      response = await profileRequest(locationProfile, token);
+    } else {
+      response = await profileRequest(locationProfile);
+    }
     if (!response.ok) {
       window.location.href = "/#";
       window.location.reload();
@@ -35,6 +48,11 @@ export default function Profile(): JSX.Element {
     }
   };
 
+  const handleOnClick = (e: any) => {
+    e.preventDefault();
+    console.log("test");
+    // }
+  };
   return (
     <>
       <div className="profile-page">
@@ -45,9 +63,9 @@ export default function Profile(): JSX.Element {
                 <img src="http://i.imgur.com/Qr71crq.jpg" className="user-img" />
                 <h4>{profile?.profile.username}</h4>
                 <p>{profile?.profile.bio}</p>
-                <button className="btn btn-sm btn-outline-secondary action-btn">
-                  <i className="ion-plus-round" />
-                  &nbsp; Follow {profile?.profile.username}
+                <button className="btn btn-sm btn-outline-secondary action-btn" onClick={handleOnClick}>
+                  {profile?.profile.following ? <i className="ion-checkmark" /> : <i className="ion-plus-round" />}
+                  &nbsp; {profile?.profile.following ? "Unfollow" : "Follow"} {profile?.profile.username}
                 </button>
               </div>
             </div>
