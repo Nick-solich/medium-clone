@@ -22,6 +22,15 @@ export default function ArticlePreview(article: ArticleInterface): JSX.Element {
         <h1>{article.article.title}</h1>
         <p>{article.article.description}</p>
         <span>Read more...</span>
+        {article.article.tagList && (
+          <ul className="tag-list">
+            {article.article.tagList.map(tag => (
+              <li className="tag-default tag-pill tag-outline" key={tag}>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )}
       </a>
     </div>
   );
