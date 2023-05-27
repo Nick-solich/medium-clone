@@ -6,7 +6,7 @@ export interface LoginRequestInterface {
     password: string;
   };
 }
-export interface LoginRespondInterface {
+export interface UserInterface {
   user: {
     email: string;
     token: string;
@@ -26,7 +26,7 @@ export async function loginRequest(user: LoginRequestInterface): Promise<Default
       body: JSON.stringify(user),
     });
     if (response.ok) {
-      const data: LoginRespondInterface = await response.json();
+      const data: UserInterface = await response.json();
       return { ok: true, status: 200, message: JSON.stringify(data) };
     } else if (response.status === 401) {
       return { ok: false, status: 401, message: "Incorrect Email or Password" };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { loginRequest, LoginRespondInterface } from "utils/api/authentication";
+import { loginRequest, UserInterface } from "utils/api/authentication";
 import { DefaultResponseInterface } from "utils/api/default";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -19,10 +19,14 @@ export default function Login(): JSX.Element {
         password: password,
       },
     });
-    console.log(cookies);
     if (response.ok) {
-      const data: LoginRespondInterface = JSON.parse(response.message);
-      setCookie("user", data, { path: "/" });
+      const data: UserInterface = JSON.parse(response.message);
+      setCookie("user", data, {
+        path: "/",
+        maxAge: 60 * 60 * 24,
+        secure: true,
+        sameSite: "none",
+      });
       navigate("/");
     }
     setError(response.message);
