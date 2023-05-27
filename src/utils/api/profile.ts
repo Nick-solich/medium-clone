@@ -9,14 +9,23 @@ export interface ProfileInterface {
   };
 }
 
-export async function profileRequest(username: string): Promise<DefaultResponseInterface> {
+export async function profileRequest(username: string, token?: string): Promise<DefaultResponseInterface> {
   try {
+    let headers: HeadersInit | undefined;
+    if (token) {
+      headers = {
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Token ${token}`,
+      };
+    } else {
+      headers = {
+        "Content-Type": "application/json; charset=UTF-8",
+      };
+    }
     const url = `${process.env.REACT_APP_BACKEND_URL}/api/profiles/${username}`;
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
+      headers: headers,
     });
     if (response.ok) {
       const data: ProfileInterface = await response.json();
