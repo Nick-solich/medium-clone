@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Cookies } from "react-cookie";
 
 export default function Logout(): JSX.Element {
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  const cookies = new Cookies();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    removeCookie("user");
+    cookies.remove("user");
     navigate("/#");
     navigate(0);
   };
