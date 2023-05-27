@@ -48,7 +48,7 @@ export interface ArticleInterface {
 
 export async function articleRequest(slug: ArticleRequestInterface): Promise<DefaultResponseInterface> {
   try {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/api/articles/${slug}`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}/api/articles/${slug.slug}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {
