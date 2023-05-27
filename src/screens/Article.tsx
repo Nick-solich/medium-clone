@@ -19,9 +19,11 @@ export default function Article(): JSX.Element {
     //Make the request
     const request: ArticleRequestInterface = { slug: locationSlug };
     const response: DefaultResponseInterface = await articleRequest(request);
-    if (!response.ok) return;
+    if (!response.ok) {
+      window.location.href = "/#";
+      window.location.reload();
+    }
     setArticle(JSON.parse(response.message));
-    console.log(JSON.parse(response.message));
   };
 
   return (
@@ -43,12 +45,12 @@ export default function Article(): JSX.Element {
               </div>
               <button className="btn btn-sm btn-outline-secondary">
                 <i className="ion-plus-round" />
-                &nbsp; Follow {article?.article.author.username} <span className="counter">(0)</span>
+                &nbsp; Follow {article?.article.author.username} <span className="counter"></span>
               </button>
               &nbsp;&nbsp;
               <button className="btn btn-sm btn-outline-primary">
                 <i className="ion-heart" />
-                &nbsp; Favorite Post <span className="counter">{article?.article.favoritesCount}</span>
+                &nbsp; Favorite Post <span className="counter">({article?.article.favoritesCount})</span>
               </button>
             </div>
           </div>
@@ -83,7 +85,7 @@ export default function Article(): JSX.Element {
               &nbsp;
               <button className="btn btn-sm btn-outline-primary">
                 <i className="ion-heart" />
-                &nbsp; Favorite Post <span className="counter">{article?.article.favoritesCount}</span>
+                &nbsp; Favorite Post <span className="counter">({article?.article.favoritesCount})</span>
               </button>
             </div>
           </div>
